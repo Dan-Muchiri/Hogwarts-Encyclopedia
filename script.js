@@ -77,10 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(category ==='Spells'){
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
-                                    <p>Description: ${item.description}</p>`
-                                    
+                                    <p>Description: ${item.description}</p>
+                                    <button id='add-favorite'>Add to favorite</button>`
         }else{
-        
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Species: ${item.species}</p>
                                     <p>Gender: ${item.gender}</p>
@@ -94,9 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <li>Length: ${item.wand.length}</li>
                                     <p>Patronus:${item.patronus}</p>
                                     <p>Actor: ${item.actor}</p>
-                                    <img src='${item.image}'>`
+                                    <img src='${item.image}'>
+                                    <button id='add-favorite'>Add to favorite</button>`;
+
+        document.addEventListener('click', (event) => {
+            if (event.target.id === 'add-favorite') {
+                addToFavorites(item, category);
+            }
+        });
+        }
     }
-}
+
+
     studentButton.click()
 
 });
