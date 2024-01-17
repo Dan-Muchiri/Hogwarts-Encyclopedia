@@ -3,36 +3,57 @@ body{
     padding: 0;
     box-sizing: border-box;
     height: 100vh;
-    background-color: aqua;
     display: flex;
     flex-direction: column;
+    background-image: url('./images/Spells\ table.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.nav{
-    background-color: red;
+header {
+    display: flex;
+    align-items: center;
+    height: 110px;
+}
+
+.nav {
+    background-color: rgba(247, 245, 245, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
     padding-right: 10px;
+    border-radius: 10px;
     margin-left: 10px;
     margin-right: 10px;
-
 }
 
-#content{
-    flex: 1;
+#content {
     display: flex;
-    background-color: rgb(222, 250, 215);
+    align-items: top;
+    flex: 1;
     max-height: 500px;
     margin-top: 20px;
 }
 
-#list-container{
-    background-color: rgb(163, 83, 83);
-    width: 22%;
+#list-container {
+    background-color: rgba(247, 245, 245, 0.3); 
+    padding: 20px;
     margin-left: 20px;
+    margin-top: 0px;
+    width: 22%;
+    border-radius: 20px;
 }
 
-#details {
-    background-color: rgb(184, 24, 24);
-    flex: 1;
+.details {
+    background-color: rgba(247, 245, 245, 0.3); 
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
     margin-left: 40px;
     margin-right: 20px;
+    padding-top: 20px;
+    flex: 1;
+    border-radius: 20px;
 }
