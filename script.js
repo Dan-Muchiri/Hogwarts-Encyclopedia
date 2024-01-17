@@ -75,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const detailsContainer = document.getElementById('details');
         detailsContainer.innerHTML = '';
         
+        if(category ==='Spells'){
+        detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
+                                    <p>Description: ${item.description}</p>`
+                                    
+        }else{
+        
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Species: ${item.species}</p>
                                     <p>Gender: ${item.gender}</p>
@@ -90,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <p>Actor: ${item.actor}</p>
                                     <img src='${item.image}'>`
     }
-
+}
     studentButton.click()
 
 });
