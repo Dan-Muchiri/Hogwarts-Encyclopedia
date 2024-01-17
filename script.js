@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const listItem = document.createElement('li');
                 listItem.classList.add('list-item');
                 listItem.textContent = item.name;
-                listItem.dataset.id = item._id; 
                 
                 listItem.addEventListener('click', () => {
                 showDetails(item, category);
@@ -95,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <p>Actor: ${item.actor}</p>
                                     <img src='${item.image}'>
                                     <button id='add-favorite'>Add to favorite</button>`;
-
-        document.addEventListener('click', (event) => {
-            if (event.target.id === 'add-favorite') {
-                addToFavorites(item, category);
-            }
-        });
         }
+
+        const addButton = document.getElementById('add-favorite');
+            addButton.addEventListener('click', () => {
+                addToFavorites(item, category);
+                    });
+
     }
 
 
@@ -109,8 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Adding to favorites:', item);
     
         let API_URL;
+        if(category==="Spells"){
+        API_URL = 'http://localhost:3000/spells'
+        }else{
         API_URL = 'http://localhost:3000/characters'
-        
+        }
+    
         fetch(API_URL, {
             method: 'POST',
             headers: {
