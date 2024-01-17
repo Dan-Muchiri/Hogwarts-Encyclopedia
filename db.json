@@ -56,6 +56,32 @@
       "alternate_actors": [],
       "alive": true,
       "image": "https://ik.imagekit.io/hpapi/mcgonagall.jpg"
+    },
+    {
+      "id": "d58e7249-19d1-40bd-a43f-1da0497fe8aa",
+      "name": "Dolores Umbridge",
+      "alternate_names": [],
+      "species": "human",
+      "gender": "female",
+      "house": "Slytherin",
+      "dateOfBirth": null,
+      "yearOfBirth": null,
+      "wizard": true,
+      "ancestry": "half-blood",
+      "eyeColour": "brown",
+      "hairColour": "grey",
+      "wand": {
+        "wood": "birch",
+        "core": "dragon heartstring",
+        "length": 8
+      },
+      "patronus": "persian cat",
+      "hogwartsStudent": false,
+      "hogwartsStaff": true,
+      "actor": "Imelda Staunton",
+      "alternate_actors": [],
+      "alive": true,
+      "image": "https://ik.imagekit.io/hpapi/umbridge.jpg"
     }
   ],
   "spells": [
