@@ -30,6 +30,32 @@
       "alternate_actors": [],
       "alive": true,
       "image": "https://ik.imagekit.io/hpapi/harry.jpg"
+    },
+    {
+      "id": "ca3827f0-375a-4891-aaa5-f5e8a5bad225",
+      "name": "Minerva McGonagall",
+      "alternate_names": [],
+      "species": "human",
+      "gender": "female",
+      "house": "Gryffindor",
+      "dateOfBirth": "04-10-1925",
+      "yearOfBirth": 1925,
+      "wizard": true,
+      "ancestry": "half-blood",
+      "eyeColour": "",
+      "hairColour": "black",
+      "wand": {
+        "wood": "fir",
+        "core": "dragon heartstring",
+        "length": 9.5
+      },
+      "patronus": "tabby cat",
+      "hogwartsStudent": false,
+      "hogwartsStaff": true,
+      "actor": "Dame Maggie Smith",
+      "alternate_actors": [],
+      "alive": true,
+      "image": "https://ik.imagekit.io/hpapi/mcgonagall.jpg"
     }
   ],
   "spells": [
@@ -37,6 +63,16 @@
       "id": "c76a2922-ba4c-4278-baab-44defb631236",
       "name": "Aberto",
       "description": "Opens locked doors"
+    },
+    {
+      "id": "018429a5-15d5-41af-bf8f-98a966733d77",
+      "name": "Anapneo",
+      "description": "Clears someone's airway"
+    },
+    {
+      "id": "73886d47-2808-4861-ae40-956f4cb56272",
+      "name": "Ascendio",
+      "description": "Propells someone into the air"
     }
   ]
 }

@@ -2,18 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentButton = document.getElementById('student-btn');
     const staffButton = document.getElementById('staff-btn');
     const spellsButton = document.getElementById('spells-btn');
+    const favoritesButton = document.getElementById('fav-btn');
     const contentList = document.getElementById('list-container');
     
-    studentButton.addEventListener('click', (event) => {
+    studentButton.addEventListener('click', () => {
         fetchData('Students');
     });
 
-    staffButton.addEventListener('click', (event) => {
+    staffButton.addEventListener('click', () => {
         fetchData('Staff');
     });
 
-    spellsButton.addEventListener('click', (event) => {
+    spellsButton.addEventListener('click', () => {
         fetchData("Spells");
+    });
+
+    favoritesButton.addEventListener('click', () => {
+        fetchData('Favorites');
     });
 
 
@@ -28,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
             case 'Spells':
             API_URL = 'https://hp-api.onrender.com/api/spells';
+            break;
+            case 'Favorites':
+            API_URL = 'http://localhost:3000/characters';
             break;
             default:
             console.error('Invalid category');
@@ -45,11 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
             listHeader.textContent = `${category} list`;
             contentList.appendChild(listHeader); 
 
+                if(category==="Favorites"){
+                const smallHeader =document.createElement('h3');
+                smallHeader.textContent = `Favorite Characters`;
+                contentList.appendChild(smallHeader);
+                }
+
             data.forEach((item,index) => {
                 const listItem = document.createElement('li');
                 listItem.classList.add('list-item');
                 listItem.textContent = item.name;
-                
+
                 listItem.addEventListener('click', () => {
                 showDetails(item, category);
                 });
@@ -67,7 +81,46 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+
+            if(category==='Favorites'){
+            fetchLocalSpells();
+            }
     }
+
+
+    function fetchLocalSpells() {
+        fetch('http://localhost:3000/spells')
+        .then(response => response.json())
+        .then(data => {
+            
+            if (Array.isArray(data)) {
+            const smallHeader =document.createElement('h3');
+            smallHeader.textContent = `Favorite Spells`;
+            contentList.appendChild(smallHeader);
+
+            data.forEach((item,index) => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('list-item');
+                listItem.textContent = item.name;
+                
+                listItem.addEventListener('click', () => {
+                showDetails(item, 'Spells');
+                });
+                contentList.appendChild(listItem);
+
+            if (index === 0) {
+                listItem.click();
+            } 
+            });
+            } else {
+            console.error('Invalid data format received');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    }
+
 
 
     function showDetails(item,category) {
@@ -97,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const addButton = document.getElementById('add-favorite');
-            addButton.addEventListener('click', () => {
-                addToFavorites(item, category);
-                    });
+        addButton.addEventListener('click', () => {
+            addToFavorites(item, category);
+        });
 
     }
 
