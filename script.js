@@ -70,6 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    function showDetails(item,category) {
+        const detailsContainer = document.getElementById('details');
+        detailsContainer.innerHTML = '';
+        
+        detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
+                                    <p>Species: ${item.species}</p>
+                                    <p>Gender: ${item.gender}</p>
+                                    <p>House: ${item.house}</p>
+                                    <p>Ancestry: ${item.ancestry}</p>
+                                    <p>Eye Color: ${item.eyeColour}</p>
+                                    <p>Hair Color: ${item.hairColour}</p>
+                                    <p>Wand: </p>
+                                    <li>Wood: ${item.wand.wood}</li>
+                                    <li>Core: ${item.wand.core}</li>
+                                    <li>Length: ${item.wand.length}</li>
+                                    <p>Patronus:${item.patronus}</p>
+                                    <p>Actor: ${item.actor}</p>
+                                    <img src='${item.image}'>`
+    }
+
     studentButton.click()
 
 });
