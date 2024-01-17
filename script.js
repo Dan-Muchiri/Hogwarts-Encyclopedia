@@ -8,10 +8,31 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchData('Students');
     });
 
+    staffButton.addEventListener('click', (event) => {
+        fetchData('Staff');
+    });
+
+    spellsButton.addEventListener('click', (event) => {
+        fetchData("Spells");
+    });
+
 
     function fetchData(category) {
         let API_URL;
-        API_URL = 'https://hp-api.onrender.com/api/characters/students';
+        switch (category) {
+            case 'Students':
+            API_URL = 'https://hp-api.onrender.com/api/characters/students';
+            break;
+            case 'Staff':
+            API_URL = 'https://hp-api.onrender.com/api/characters/staff';
+            break;
+            case 'Spells':
+            API_URL = 'https://hp-api.onrender.com/api/spells';
+            break;
+            default:
+            console.error('Invalid category');
+            return;
+        }
         
         fetch(API_URL)
         .then(response => response.json())
