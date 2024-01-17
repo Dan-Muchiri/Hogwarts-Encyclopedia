@@ -105,6 +105,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    function addToFavorites(item, category) {
+        console.log('Adding to favorites:', item);
+    
+        let API_URL;
+        API_URL = 'http://localhost:3000/characters'
+        
+        fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(item),
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => console.log('Added to favorites:', data))
+        .catch(error => console.error('Error adding to favorites:', error));
+    }
+
+
     studentButton.click()
 
 });
