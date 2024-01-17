@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav{
+    background-color: red;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+#content{
+    flex: 1;
+    display: flex;
+    background-color: rgb(222, 250, 215);
+    max-height: 500px;
+    margin-top: 20px;
+}
+
+#list-container{
+    background-color: rgb(163, 83, 83);
+    width: 22%;
+    margin-left: 20px;
+}
+
+#details {
+    background-color: rgb(184, 24, 24);
+    flex: 1;
+    margin-left: 40px;
+    margin-right: 20px;
+}
