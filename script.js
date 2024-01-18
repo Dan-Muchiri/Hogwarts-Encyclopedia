@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.textContent = item.name;
                 
                 listItem.addEventListener('click', () => {
-                showDetails(item, 'Spells');
+                showDetails(item, 'Fav-spells');
                 });
                 contentList.appendChild(listItem);
 
@@ -138,6 +138,26 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Description: ${item.description}</p>
                                     <button id='add-favorite'>Add to favorite</button>`
+        }else if (category === 'Fav-spells'){
+            detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
+                                    <p>Description: ${item.description}</p>
+                                    <button id='delete-favorite'>Remove favorite</button>`
+        }else if (category === 'Favorites'){
+            detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
+                                    <p>Species: ${item.species}</p>
+                                    <p>Gender: ${item.gender}</p>
+                                    <p>House: ${item.house}</p>
+                                    <p>Ancestry: ${item.ancestry}</p>
+                                    <p>Eye Color: ${item.eyeColour}</p>
+                                    <p>Hair Color: ${item.hairColour}</p>
+                                    <p>Wand: </p>
+                                    <li>Wood: ${item.wand.wood}</li>
+                                    <li>Core: ${item.wand.core}</li>
+                                    <li>Length: ${item.wand.length}</li>
+                                    <p>Patronus:${item.patronus}</p>
+                                    <p>Actor: ${item.actor}</p>
+                                    <img src='${item.image}'>
+                                    <button id='delete-favorite'>Remove favorite</button>`;
         }else{
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Species: ${item.species}</p>
@@ -184,14 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             console.log('Added to favorites:', data);
-    
-            const addButton = document.getElementById('add-favorite');
+        })
+        .catch(error => {
+            console.error('Error adding to favorites:', error);});
+
+        const addButton = document.getElementById('add-favorite');
             addButton.textContent = 'Among Favorites';
             addButton.classList.add('is-favorite'); 
-        })
-        .catch(error => console.error('Error adding to favorites:', error)
-        );
     }
+    
     
 
 

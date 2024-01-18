@@ -183,7 +183,7 @@ img {
     border-radius: 20px;
 }
 
-#add-favorite{
+#delete-favorite, #add-favorite{
     position: absolute;
     right: 250px;
     bottom: 130px;
@@ -235,7 +235,7 @@ img {
         border-radius: 15px;
     }
 
-    #add-favorite {
+    #delete-favorite, #add-favorite {
         right: 0px;
         bottom: 0px;
     }
