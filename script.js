@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
     const contentList = document.getElementById('list-container');
+    const detailsContainer = document.getElementById('details');
     
     studentButton.addEventListener('click', () => {
         fetchData('Students');
@@ -55,6 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (Array.isArray(data)) {
             contentList.innerHTML = '';
+
+            if(category==="Favorites"){
+                detailsContainer.innerHTML = '';
+                }
 
             const listHeader =document.createElement('h2');
             listHeader.textContent = `${category} list`;
@@ -131,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function showDetails(item,category) {
-        const detailsContainer = document.getElementById('details');
+        
         detailsContainer.innerHTML = '';
         
         if(category ==='Spells'){
@@ -255,14 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error removing from favorites:', error);
             });
+
+            favoritesButton.click();
     }
     
     
-    
-    
-    
-
-
     function searchCharacters(searchTerm) {
         fetch('https://hp-api.onrender.com/api/characters')
             .then(response => response.json())
