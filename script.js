@@ -138,10 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Description: ${item.description}</p>
                                     <button id='add-favorite'>Add to favorite</button>`
+
+        const addButton = document.getElementById('add-favorite');
+        addButton.addEventListener('click', () => {
+            addToFavorites(item, category);
+        });
         }else if (category === 'Fav-spells'){
             detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Description: ${item.description}</p>
                                     <button id='delete-favorite'>Remove favorite</button>`
+
+        const deleteButton = document.getElementById('delete-favorite');
+        deleteButton.addEventListener('click', () => {
+            removeFavorite(item, category);
+        });
         }else if (category === 'Favorites'){
             detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Species: ${item.species}</p>
@@ -158,6 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <p>Actor: ${item.actor}</p>
                                     <img src='${item.image}'>
                                     <button id='delete-favorite'>Remove favorite</button>`;
+
+        const deleteButton = document.getElementById('delete-favorite');
+        deleteButton.addEventListener('click', () => {
+            removeFavorite(item, category);
+        });
         }else{
         detailsContainer.innerHTML=`<h2>Name: ${item.name}</h2>
                                     <p>Species: ${item.species}</p>
@@ -174,12 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <p>Actor: ${item.actor}</p>
                                     <img src='${item.image}'>
                                     <button id='add-favorite'>Add to favorite</button>`;
-        }
 
-        const addButton = document.getElementById('add-favorite');
-        addButton.addEventListener('click', () => {
-            addToFavorites(item, category);
-        });
+                                    const addButton = document.getElementById('add-favorite');
+                                    addButton.addEventListener('click', () => {
+                                        addToFavorites(item, category);
+                                    });
+        }
 
     }
 
@@ -212,6 +227,38 @@ document.addEventListener('DOMContentLoaded', () => {
             addButton.textContent = 'Among Favorites';
             addButton.classList.add('is-favorite'); 
     }
+
+
+    function removeFavorite(item, category) {
+        console.log('Removing from favorites:', item);
+    
+        let API_URL;
+        if (category === 'Fav-spells') {
+            API_URL = `http://localhost:3000/spells/${item.id}`;
+        } else {
+            API_URL = `http://localhost:3000/characters/${item.id}`;
+        }
+    
+        fetch(API_URL, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to remove from favorites: ${response.status}`);
+                }
+                console.log('Removed from favorites successfully');
+                favoritesButton.click();
+            })
+            .catch(error => {
+                console.error('Error removing from favorites:', error);
+            });
+    }
+    
+    
+    
     
     
 
