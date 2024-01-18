@@ -16,7 +16,11 @@ Hogwarts' Encyclopedia is a web application that serves as a comprehensive guide
     ```bash
     cd Hogwarts-Encyclopedia
     ```
-3. **Open the `index.html` file in your preferred web browser.**
+3. **Run the local JSON server for the database:**
+    ```bash
+    json-server --watch db.json
+    ```
+4. **Open the `index.html` file in your preferred web browser.**
 
 ## Live Site
 Visit the live site on GitHub Pages: [Hogwarts' Encyclopedia](https://dan-muchiri.github.io/Hogwarts-Encyclopedia/)
