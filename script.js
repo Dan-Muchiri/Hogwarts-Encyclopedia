@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const staffButton = document.getElementById('staff-btn');
     const spellsButton = document.getElementById('spells-btn');
     const favoritesButton = document.getElementById('fav-btn');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
     const contentList = document.getElementById('list-container');
     
     studentButton.addEventListener('click', () => {
@@ -19,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     favoritesButton.addEventListener('click', () => {
         fetchData('Favorites');
+    });
+
+    searchButton.addEventListener('click', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        searchCharacters(searchTerm);
     });
 
 
@@ -181,6 +188,49 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error adding to favorites:', error));
     }
 
+
+    function searchCharacters(searchTerm) {
+        fetch('https://hp-api.onrender.com/api/characters')
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    const filteredCharacters = data.filter(character =>
+                        character.name.toLowerCase().includes(searchTerm)
+                    );
+
+                    if (filteredCharacters.length > 0) {
+                        contentList.innerHTML = '';
+
+                        const listHeader = document.createElement('h2');
+                        listHeader.textContent = 'Search Results';
+                        contentList.appendChild(listHeader);
+
+                        filteredCharacters.forEach((character, index) => {
+                            const listItem = document.createElement('li');
+                            listItem.classList.add('list-item');
+                            listItem.textContent = character.name;
+
+                            listItem.addEventListener('click', () => {
+                                showDetails(character, 'Search Results');
+                            });
+
+                            contentList.appendChild(listItem);
+
+                            if (index === 0) {
+                                listItem.click();
+                            } 
+                        });
+                    } else {
+                        contentList.innerHTML = '<p>No matching results found.</p>';
+                    }
+                } else {
+                    console.error('Invalid data format received');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
 
     studentButton.click()
 

@@ -207,7 +207,7 @@ img {
         font-size: 18px;
     }
 
-    p, .list-item {
+    .details li, p, .list-item {
         font-size: 18px;
         margin: 10px;
     }
