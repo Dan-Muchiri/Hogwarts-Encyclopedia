@@ -192,45 +192,84 @@ document.addEventListener('DOMContentLoaded', () => {
     function searchCharacters(searchTerm) {
         fetch('https://hp-api.onrender.com/api/characters')
             .then(response => response.json())
-            .then(data => {
-                if (Array.isArray(data)) {
-                    const filteredCharacters = data.filter(character =>
+            .then(characterData => {
+                if (Array.isArray(characterData)) {
+                    const filteredCharacters = characterData.filter(character =>
                         character.name.toLowerCase().includes(searchTerm)
                     );
-
+    
+                    contentList.innerHTML = '';  
+    
                     if (filteredCharacters.length > 0) {
-                        contentList.innerHTML = '';
-
-                        const listHeader = document.createElement('h2');
-                        listHeader.textContent = 'Search Results';
-                        contentList.appendChild(listHeader);
-
+                        const listHeaderCharacters = document.createElement('h2');
+                        listHeaderCharacters.textContent = 'Search Results - Characters';
+                        contentList.appendChild(listHeaderCharacters);
+    
                         filteredCharacters.forEach((character, index) => {
                             const listItem = document.createElement('li');
                             listItem.classList.add('list-item');
                             listItem.textContent = character.name;
-
+    
                             listItem.addEventListener('click', () => {
-                                showDetails(character, 'Search Results');
+                                showDetails(character, 'Search Results - Characters');
                             });
-
+    
                             contentList.appendChild(listItem);
-
+    
                             if (index === 0) {
                                 listItem.click();
-                            } 
+                            }
                         });
-                    } else {
-                        contentList.innerHTML = '<p>No matching results found.</p>';
                     }
+
+                    fetch('https://hp-api.onrender.com/api/spells')
+                        .then(response => response.json())
+                        .then(spellData => {
+                            if (Array.isArray(spellData)) {
+                        
+                                const filteredSpells = spellData.filter(spell =>
+                                    spell.name.toLowerCase().includes(searchTerm)
+                                );
+    
+                                if (filteredSpells.length > 0) {
+                                    const listHeaderSpells = document.createElement('h2');
+                                    listHeaderSpells.textContent = 'Search Results - Spells';
+                                    contentList.appendChild(listHeaderSpells);
+    
+                                    filteredSpells.forEach((spell,index) => {
+                                        const listItem = document.createElement('li');
+                                        listItem.classList.add('list-item');
+                                        listItem.textContent = spell.name;
+    
+                                        listItem.addEventListener('click', () => {
+                                            showDetails(spell, 'Spells');
+                                        });
+    
+                                        contentList.appendChild(listItem);
+
+                                        if (index === 0) {
+                                            listItem.click();
+                                        }
+                                    });
+                                } else if (filteredCharacters.length < 1) {
+                                    contentList.innerHTML = '<p>No matching results found.</p>';
+                                }
+                            } else {
+                                console.error('Invalid spell data format received');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching spells data:', error);
+                        });
                 } else {
-                    console.error('Invalid data format received');
+                    console.error('Invalid character data format received');
                 }
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching characters data:', error);
             });
     }
+    
 
     studentButton.click()
 
