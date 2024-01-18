@@ -168,10 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Adding to favorites:', item);
     
         let API_URL;
-        if(category==="Spells"){
-        API_URL = 'http://localhost:3000/spells'
-        }else{
-        API_URL = 'http://localhost:3000/characters'
+        if (category === "Spells") {
+            API_URL = 'http://localhost:3000/spells';
+        } else {
+            API_URL = 'http://localhost:3000/characters';
         }
     
         fetch(API_URL, {
@@ -181,12 +181,18 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(item),
         })
-        .then(response => {
-            return response.json();
+        .then(response => response.json())
+        .then(data => {
+            console.log('Added to favorites:', data);
+    
+            const addButton = document.getElementById('add-favorite');
+            addButton.textContent = 'Among Favorites';
+            addButton.classList.add('is-favorite'); 
         })
-        .then(data => console.log('Added to favorites:', data))
-        .catch(error => console.error('Error adding to favorites:', error));
+        .catch(error => console.error('Error adding to favorites:', error)
+        );
     }
+    
 
 
     function searchCharacters(searchTerm) {
