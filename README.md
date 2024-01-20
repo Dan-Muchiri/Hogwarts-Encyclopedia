@@ -2,7 +2,10 @@
 
 ## Author
 - **Author Name:** [Dan Munene]
-- **GitHub:** [Dan-Muchiri] (https://github.com/Dan-Muchiri)
+- **GitHub:** [Dan-Muchiri](https://github.com/Dan-Muchiri)
+
+## Project Management
+- **Trello Board:** [Project Trello Board](https://trello.com/b/EQr0E9TD)
 
 ## Description
 Hogwarts' Encyclopedia is a web application that serves as a comprehensive guide to the magical world of Hogwarts. It allows users to explore information about students, staff, and spells from the wizarding school. Users can also manage their favorite characters and spells.
